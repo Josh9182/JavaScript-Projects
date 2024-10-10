@@ -4,4 +4,7 @@ This repository is the home page of the JavaScript-Projects I have created to di
 
 Project Name  | Description   |  Topic
 ------------- | ------------- | ------------------
-[Automation Software Front-End](https://github.com/Josh9182/JavaScript-Projects/tree/main/Automation%20Software%20UI)|**#FRONT-END ONLY#** Web automation software written in JavaScript and C# to perform various tasks, written as a template. The UI will be built and previewed on Vite. HTML will be utilized to create the software structure and CSS w/SASS to customize structure elements. Using the React framework, base / advanced UI elements via JSX will be created in combination with TypeScript's readability. Jest will be used, necessary for its "expect" & "toBe" functions. Lastly Cypress will be included for DOM debugging. | HTML, CSS, SASS, JavaScript, React, TypeScript, Jest, Cypress
+[Automation Software Front-End](https://github.com/Josh9182/JavaScript-Projects/tree/main/Automation%20Software%20UI)|**#FRONT-END ONLY#** Web automation software written in JavaScript and C# to perform various tasks, written as a template. The UI will be built and previewed on Vite. HTML will be utilized to create the software structure and CSS w/SASS to customize structure elements. Using the React framework, base / advanced UI elements via JSX will be created in combination with TypeScript's readability. | HTML, CSS, SASS, JavaScript, React, TypeScript
+Project Name  | Description   |  Topic
+------------- | ------------- | ------------------
+[Automation Software Front-End Debugging]() | Utilizing the previous project's front end source code, JavaScript's Jest and Cypress will be used to debug and perform a multitude of testing types. | JavaScript, Jest, Cypress
