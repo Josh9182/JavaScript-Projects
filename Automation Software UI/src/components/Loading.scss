@@ -1,1 +1,101 @@
+$primary-color1: rgb(21, 21, 105);
+$primary-color2: rgb(45, 45, 125);
+$primary-color3: rgb(61, 61, 159);
 
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#loading-symbol1 {
+  color: $primary-color1;
+  background-color: $primary-color1;
+  z-index: 10000;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  animation: borderRound 2s ease-in-out infinite;
+}
+
+#inner-symbol1 {
+  background-color: white;
+  z-index: 10000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: borderRound 3s ease-in-out infinite,
+    growShrink 2.5s ease-in-out infinite;
+}
+
+#loading-symbol2 {
+  color: $primary-color2;
+  background-color: $primary-color2;
+  z-index: 10000;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  animation: borderRound 1.8s ease-in-out infinite;
+  margin-left: 10px;
+}
+
+#inner-symbol2 {
+  background-color: white;
+  z-index: 10000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: borderRound 2.8s ease-in-out infinite,
+    growShrink 2.3s ease-in-out infinite;
+}
+
+#loading-symbol3 {
+  color: $primary-color3;
+  background-color: $primary-color3;
+  z-index: 10000;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  animation: borderRound 1.6s ease-in-out infinite;
+  margin-left: 10px;
+}
+
+#inner-symbol3 {
+  background-color: white;
+  z-index: 10000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: borderRound 2.6s ease-in-out infinite,
+    growShrink 2.1s ease-in-out infinite;
+}
+
+@keyframes borderRound {
+  0%,
+  100% {
+    border-radius: 50px;
+  }
+  50% {
+    border-radius: 10px;
+  }
+}
+
+@keyframes growShrink {
+  0%,
+  100% {
+    height: 0px;
+    width: 0px;
+  }
+
+  50% {
+    height: 75px;
+    width: 75px;
+  }
+}
