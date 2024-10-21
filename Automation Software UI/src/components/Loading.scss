@@ -40,7 +40,7 @@ $primary-color3: rgb(61, 61, 159);
   position: relative;
   height: 100px;
   width: 100px;
-  animation: borderRound 1.8s ease-in-out infinite;
+  animation: borderRound 1.7s ease-in-out infinite;
   margin-left: 10px;
 }
 
@@ -51,8 +51,8 @@ $primary-color3: rgb(61, 61, 159);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: borderRound 2.8s ease-in-out infinite,
-    growShrink 2.3s ease-in-out infinite;
+  animation: borderRound 2.7s ease-in-out infinite,
+    growShrink 2.2s ease-in-out infinite;
 }
 
 #loading-symbol3 {
@@ -62,7 +62,7 @@ $primary-color3: rgb(61, 61, 159);
   position: relative;
   height: 100px;
   width: 100px;
-  animation: borderRound 1.6s ease-in-out infinite;
+  animation: borderRound 1.5s ease-in-out infinite;
   margin-left: 10px;
 }
 
@@ -73,8 +73,8 @@ $primary-color3: rgb(61, 61, 159);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: borderRound 2.6s ease-in-out infinite,
-    growShrink 2.1s ease-in-out infinite;
+  animation: borderRound 2.5s ease-in-out infinite,
+    growShrink 2.0s ease-in-out infinite;
 }
 
 @keyframes borderRound {
