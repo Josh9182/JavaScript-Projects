@@ -3,7 +3,7 @@ import './App.scss';
 
 const Loading = () => {
   return (
-    <div id="container">
+    <div id="loading-screen">
       <div id="loading-symbol1">
         <div id="inner-symbol1"></div>
       </div>
