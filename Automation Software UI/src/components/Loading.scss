@@ -1,3 +1,4 @@
+$transparent: rgba(255, 255, 255, 0);
 $primary-color1: rgb(21, 21, 105);
 $primary-color2: rgb(45, 45, 125);
 $primary-color3: rgb(61, 61, 159);
@@ -7,9 +8,13 @@ $primary-color3: rgb(61, 61, 159);
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  background-color: $transparent;
+  z-index: 9999;
 }
 
 #loading-symbol1 {
