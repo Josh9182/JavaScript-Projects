@@ -3,19 +3,15 @@ import Loading from './Loading';
 import Login from './Login';
 import Dashboard from './Dashboard';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/loading" element={<Loading />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="*" element={<Navigate to="/login" />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/Loading" element={<Loading />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="*" element={<Navigate to="/Login" />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
-
-export default App;
+};
