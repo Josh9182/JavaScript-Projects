@@ -17,7 +17,7 @@ const App = () => {
       setTimeout(() => {
         setLoading(false);
         navigate('/Dashboard');
-      }, 1000);
+      }, 2000);
     } else {
       setError(
         "Your entry doesn't match our records. Please try again. Note: passwords are case sensitive."
@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <div id="login-page">
-      <div id="error-container">
+      <div id="error-container" className={error ? 'error' : ''}>
         <h1 id="error-element">{error}</h1>
       </div>
       {loading ? (
