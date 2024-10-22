@@ -1,1 +1,81 @@
+$my-space: 10px;
+$si_blue: rgb(78, 177, 215);
+$dsi_blue: rgb(38, 140, 180);
 
+#login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+#error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 5vh;
+
+  &.error {
+    border: 1px solid red;
+    padding-left: $my-space;
+    padding-right: $my-space;
+    margin-bottom: $my-space + 10;
+  }
+}
+
+#error-element {
+  font-size: 15px;
+  color: red;
+}
+
+#username-container {
+  padding: $my-space;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 0 0 10px gray;
+  height: 30vh;
+  width: 30vw;
+}
+
+#username-label,
+#password-label {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+#username-element,
+#password-element {
+  display: flex;
+  margin-left: 20px;
+  margin-top: 5px;
+  padding: 5px;
+  width: 27vw;
+  font-size: 15px;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+#submit-element {
+  display: flex;
+  justify-content: center;
+  margin-left: 35px;
+  margin-top: 30px;
+  padding: 20px;
+  width: 26vw;
+  font-size: 15px;
+  color: white;
+  background-color: $dsi_blue;
+  border: 3px solid $si_blue;
+  border-radius: 15px;
+}
+
+#submit-element:hover {
+  background-color: $si_blue;
+  border: 3px solid $dsi_blue;
+  cursor: pointer;
+}
