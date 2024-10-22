@@ -32,6 +32,9 @@ $dsi_blue: rgb(38, 140, 180);
 }
 
 #username-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   padding: $my-space;
   border: 1px solid black;
   border-radius: 8px;
@@ -63,7 +66,7 @@ $dsi_blue: rgb(38, 140, 180);
 #submit-element {
   display: flex;
   justify-content: center;
-  margin-left: 35px;
+  margin-left: 40px;
   margin-top: 30px;
   padding: 20px;
   width: 26vw;
