@@ -14,6 +14,7 @@ const App = () => {
     e.preventDefault();
     if (username === 'admin' && password === 'password') {
       setLoading(true);
+      setError('');
       setTimeout(() => {
         setLoading(false);
         navigate('/Dashboard');
@@ -37,7 +38,7 @@ const App = () => {
       ) : (
         <form onSubmit={NavigatePage}>
           <div id="username-container">
-            <label id="username-label">Username:</label>
+            <label id="username-label">Username</label>
             <input
               id="username-element"
               type="text"
@@ -49,7 +50,7 @@ const App = () => {
               required
             ></input>
             <div id="password-container">
-              <label id="password-label">Password:</label>
+              <label id="password-label">Password</label>
               <input
                 id="password-element"
                 type="text"
@@ -63,7 +64,7 @@ const App = () => {
             </div>
             <div id="submit-container">
               <button id="submit-element" type="submit">
-                Submit
+                Sign In
               </button>
             </div>
           </div>
