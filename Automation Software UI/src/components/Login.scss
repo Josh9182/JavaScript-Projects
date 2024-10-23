@@ -1,5 +1,13 @@
 $si_blue: rgb(78, 177, 215);
 $dsi_blue: rgb(38, 140, 180);
+$gr_blue: rgb(27, 32, 86);
+$dgr_blue: rgb(13, 9, 35);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 #login-page {
   display: flex;
@@ -8,6 +16,7 @@ $dsi_blue: rgb(38, 140, 180);
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  animation: gradient 10s infinite;
 }
 
 #error-container {
@@ -30,6 +39,15 @@ $dsi_blue: rgb(38, 140, 180);
   color: red;
 }
 
+#h1-sign-in {
+  color: white;
+  transform: translateY(20%);
+}
+
+#h1-ast {
+  color: white;
+}
+
 #username-container {
   display: flex;
   flex-direction: column;
@@ -40,13 +58,14 @@ $dsi_blue: rgb(38, 140, 180);
   box-shadow: 0 0 10px gray;
   height: auto;
   width: 30vw;
+  background-color: white;
 }
 
 #username-label,
 #password-label {
   display: block;
   margin-top: 20px;
-  margin-left: 10px; 
+  margin-left: 10px;
   font-weight: bold;
 }
 
@@ -82,4 +101,14 @@ $dsi_blue: rgb(38, 140, 180);
   background-color: $si_blue;
   border: 3px solid $dsi_blue;
   cursor: pointer;
+}
+
+@keyframes gradient {
+  0%,
+  100% {
+    background-color: $gr_blue;
+  }
+  50% {
+    background-color: $dgr_blue;
+  }
 }
