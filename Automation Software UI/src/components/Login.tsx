@@ -61,7 +61,7 @@ const App = () => {
               <label id="password-label">Password</label>
               <input
                 id="password-element"
-                type="text"
+                type="password"
                 placeholder="Enter Password"
                 value={password}
                 onChange={(e) => {
