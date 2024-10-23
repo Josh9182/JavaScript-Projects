@@ -38,6 +38,21 @@ $dgr_blue: rgb(13, 9, 35);
   color: red;
 }
 
+#top-half {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100vw;
+  height: 60vh;
+  background-color: rgb(61, 0, 0);
+  transform: translateY(-15%);
+}
+
+#heading-container {
+  height: auto;
+  transform: translateY(-90%);
+}
+
 #h1-sign-in {
   color: white;
   transform: translateY(20%);
@@ -59,6 +74,7 @@ $dgr_blue: rgb(13, 9, 35);
   height: auto;
   width: 30vw;
   background-color: white;
+  transform: translateY(-70%);
 }
 
 #username-label,
