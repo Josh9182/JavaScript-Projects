@@ -4,12 +4,12 @@ import Loading from './Loading.tsx';
 import './Login.scss';
 
 const App = () => {
-  const [username, setUser] = useState('');
-  const [password, setPass] = useState('');
-  const [heading1, setHead1] = useState('Sign In');
-  const [heading2, setHead2] = useState('Automation Software Template');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [username, setUser] = useState<string>('');
+  const [password, setPass] = useState<string>('');
+  const [heading1, setHead1] = useState<string>('Sign In');
+  const [heading2, setHead2] = useState<string>('Automation Software Template');
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const NavigatePage = (e) => {
