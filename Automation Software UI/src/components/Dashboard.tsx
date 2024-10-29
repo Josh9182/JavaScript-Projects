@@ -18,15 +18,18 @@ const Dashboard = () => {
         const rows = data.split('\n');
         const cols = rows.map((row) => row.split(','));
         setTableData(cols);
+        setError('');
       } else if (file.name.endsWith('.json')) {
         try {
           const jsonData = JSON.parse(data);
           setTableData(jsonData);
+          setError('');
         } catch (err) {
           setError('JSON file is invalid. Please resubmit.');
         }
       } else {
         setError('File type invalid. Please resubmit.');
+        setTableData([]);
       }
     };
     freader.readAsText(file);
@@ -47,4 +50,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
