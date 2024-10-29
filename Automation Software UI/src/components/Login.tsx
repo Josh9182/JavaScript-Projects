@@ -1,61 +1,87 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Login from './Login.tsx';
+import Loading from './Loading.tsx';
+import './Login.scss';
 
-const Dashboard = () => {
-  const [tableData, setTableData] = useState([]);
+const App = () => {
+  const [username, setUser] = useState<string>('');
+  const [password, setPass] = useState<string>('');
+  const [heading1, setHead1] = useState<string>('Sign In');
+  const [heading2, setHead2] = useState<string>('Automation Software Template');
   const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-
-  const FileUpload = (e) => {
-    const file = e.target.files[0];
-    const freader = new FileReader();
-
-    freader.onload = (e) => {
-      const data = e.target.result;
-
-      if (file.name.endsWith('.csv')) {
-        const rows = data.split('\n');
-        const cols = rows.map((row) => row.split(','));
-        setTableData(cols);
-        setError('');
-      } else if (file.name.endsWith('.json')) {
-        try {
-          const jsonData = JSON.parse(data);
-          setTableData(jsonData);
-          setError('');
-        } catch (err) {
-          setError('JSON file is invalid. Please resubmit.');
-        }
-      } else {
-        setError('File type invalid. Please resubmit.');
-        setTableData([]);
-      }
-    };
-    freader.readAsText(file);
-  };
 
   const NavigatePage = (e) => {
     e.preventDefault();
-    navigate('./Login');
+    if (username === 'admin' && password === 'password') {
+      setLoading(true);
+      setHead1('');
+      setHead2('');
+      setError('');
+      setTimeout(() => {
+        setLoading(false);
+        navigate('/Dashboard');
+      }, 2000);
+    } else {
+      setError(
+        "Your entry doesn't match our records. Please try again. Note: passwords are case sensitive."
+      );
+    }
   };
 
   return (
-    <div id="dashboard-container">
-      <div id="dashboard-banner">
-        <h1 id="dashboard-logo">AST</h1>
+    <div id="login-page">
+      <div id="top-half">
+        <div id="heading-container">
+          <h1 id="h1-sign-in">{heading1}</h1>
+          <h1 id="h1-ast">{heading2}</h1>
+        </div>
       </div>
-      <div id="error-container">
-        {error && <h1 id="error-element">{error}</h1>}
+      <div id="error-container" className={error ? 'error' : ''}>
+        <h1 id="error-element">{error}</h1>
       </div>
-      <div id="input-container">
-        <input type="file" accept=".csv, .json" onChange={FileUpload} />
-      </div>
-      <div id="so-container">
-        <button onClick={NavigatePage}>Sign Out</button>
-      </div>
+      {loading ? (
+        <div id="loading-container">
+          <Loading />
+        </div>
+      ) : (
+        <form onSubmit={NavigatePage}>
+          <div id="username-container">
+            <label id="username-label">Username</label>
+            <input
+              id="username-element"
+              type="text"
+              placeholder="Enter Username"
+              value={username}
+              onChange={(e) => {
+                setUser(e.target.value);
+              }}
+              required
+            ></input>
+            <div id="password-container">
+              <label id="password-label">Password</label>
+              <input
+                id="password-element"
+                type="password"
+                placeholder="Enter Password"
+                value={password}
+                onChange={(e) => {
+                  setPass(e.target.value);
+                }}
+                required
+              ></input>
+            </div>
+            <div id="submit-container">
+              <button id="submit-element" type="submit">
+                Sign In
+              </button>
+            </div>
+          </div>
+        </form>
+      )}
     </div>
   );
 };
 
-export default Dashboard;
+export default App;
