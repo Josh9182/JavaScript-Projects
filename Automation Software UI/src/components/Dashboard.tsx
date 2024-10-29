@@ -34,6 +34,12 @@ const Dashboard = () => {
     };
     freader.readAsText(file);
   };
+
+  const NavigatePage = (e) => {
+    e.preventDefault();
+    navigate('./Login');
+  };
+
   return (
     <div id="dashboard-container">
       <div id="dashboard-banner">
@@ -44,6 +50,9 @@ const Dashboard = () => {
       </div>
       <div id="input-container">
         <input type="file" accept=".csv, .json" onChange={FileUpload} />
+      </div>
+      <div id="so-container">
+        <button onClick={NavigatePage}>Sign Out</button>
       </div>
     </div>
   );
