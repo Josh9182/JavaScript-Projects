@@ -15,10 +15,14 @@ const Dashboard = () => {
       const data = e.target.result;
 
       if (file.name.endsWith('.csv')) {
-        const rows = data.split('\n');
-        const cols = rows.map((row) => row.split(','));
-        setTableData(cols);
-        setError('');
+        try {
+          const rows = data.split('\n');
+          const cols = rows.map((row) => row.split(','));
+          setTableData(cols);
+          setError('');
+        } catch (err) {
+          setError('CSV file is invalid. Please resubmit.');
+        }
       } else if (file.name.endsWith('.json')) {
         try {
           const jsonData = JSON.parse(data);
