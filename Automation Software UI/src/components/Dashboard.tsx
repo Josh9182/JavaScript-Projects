@@ -18,16 +18,31 @@ const Dashboard = () => {
         try {
           const rows = data.split('\n');
           const cols = rows.map((row) => row.split(','));
-          setTableData(cols);
-          setError('');
+
+          if (rows.length <= 1 || cols.length <= 1) {
+            setError('Data amount invalid, unable to parse. Please resubmit.');
+          } else {
+            setTableData(cols);
+            setError('');
+          }
         } catch (err) {
           setError('CSV file is invalid. Please resubmit.');
         }
       } else if (file.name.endsWith('.json')) {
         try {
           const jsonData = JSON.parse(data);
-          setTableData(jsonData);
-          setError('');
+          if (jsonData.length < 1) {
+            setError('Data amount invalid, unable to parse. Please resubmit.');
+            setTableData([]);
+          } else {
+            const headers = Object.keys(jsonData[0]);
+            const row_data = jsonData.map((value) =>
+              headers.map((header) => value[header])
+            );
+            const newJSONdata = [headers, ...row_data];
+            setTableData(newJSONdata);
+            setError('');
+          }
         } catch (err) {
           setError('JSON file is invalid. Please resubmit.');
         }
@@ -55,8 +70,32 @@ const Dashboard = () => {
       <div id="input-container">
         <input type="file" accept=".csv, .json" onChange={FileUpload} />
       </div>
-      <div id="so-container">
-        <button onClick={NavigatePage}>Sign Out</button>
+      <div id="sign-out-container">
+        <button id="sign-out-button" onClick={NavigatePage}>
+          Sign Out
+        </button>
+      </div>
+      <div id="table-container">
+        {tableData.length > 0 && (
+          <table>
+            <thead>
+              <tr>
+                {tableData[0].map((value, index) => (
+                  <th key={index}>{value}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {tableData.slice(1).map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {row.map((cell, cellIndex) => (
+                    <td key={cellIndex}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
