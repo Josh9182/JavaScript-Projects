@@ -9,10 +9,15 @@ const Dashboard = () => {
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
   const [clickStatus, setClick] = useState<boolean>(false);
   const [loadingDuration, setLoadingDuration] = useState<number>(0);
-  const [loadingMessage, setLoadingMessage] = useState<string>('');
   const navigate = useNavigate();
 
   const FileUpload = (e) => {
+    setTableData([]);
+    setError('');
+    setButtonVisibility(false);
+    setClick(false);
+    setLoadingDuration(0);
+
     const file = e.target.files[0];
     const freader = new FileReader();
 
@@ -69,25 +74,11 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    if (clickStatus) {
-      const duration = tableData.length * 8;
-      setLoadingDuration(duration);
-      setLoadingMessage('');
-
-      const progressMessage = setTimeout(() => {
-        setLoadingMessage('Generating automation structure...');
-
-        const clearMessage = setTimeout(() => {
-          setLoadingMessage('');
-        }, 2000);
-
-        return () => clearTimeout(clearMessage);
-      }, 5000);
-
-      return () => clearTimeout(progressMessage);
-    } else {
+    if (!clickStatus) {
       return;
     }
+    const duration = tableData.length * 8;
+    setLoadingDuration(duration);
   }, [clickStatus]);
 
   return (
@@ -134,7 +125,6 @@ const Dashboard = () => {
                   ))}
                 </tbody>
               </table>
-              <div>{loadingMessage}</div>
               {clickStatus && (
                 <div>
                   <ProgressBar duration={loadingDuration} />
