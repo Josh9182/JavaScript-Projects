@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Login from './Login.tsx';
 import ProgressBar from './ProgressBar.tsx';
 
 const Dashboard = () => {
   const [tableData, setTableData] = useState([]);
-  const [error, setError] = useState<string>('');
-  const [progressbar, setProgressBar] = useState<boolean>(false);
+  const [errorStatus, setError] = useState<string>('');
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
-  const [click, setClick] = useState<boolean>(false);
+  const [clickStatus, setClick] = useState<boolean>(false);
+  const [loadingDuration, setLoadingDuration] = useState<number>(0);
+  const [loadingMessage, setLoadingMessage] = useState<string>('');
   const navigate = useNavigate();
 
   const FileUpload = (e) => {
@@ -67,6 +68,28 @@ const Dashboard = () => {
     navigate('./Login');
   };
 
+  useEffect(() => {
+    if (clickStatus) {
+      const duration = tableData.length * 8;
+      setLoadingDuration(duration);
+      setLoadingMessage('');
+
+      const progressMessage = setTimeout(() => {
+        setLoadingMessage('Generating automation structure...');
+
+        const clearMessage = setTimeout(() => {
+          setLoadingMessage('');
+        }, 2000);
+
+        return () => clearTimeout(clearMessage);
+      }, 5000);
+
+      return () => clearTimeout(progressMessage);
+    } else {
+      return;
+    }
+  }, [clickStatus]);
+
   return (
     <div id="dashboard-container">
       <div id="dashboard-banner">
@@ -79,7 +102,7 @@ const Dashboard = () => {
       </div>
 
       <div id="error-container">
-        <h1 id="error-element">{error}</h1>
+        <h1 id="error-element">{errorStatus}</h1>
       </div>
       <div id="input-container">
         <input type="file" accept=".csv, .json" onChange={FileUpload} />
@@ -111,9 +134,10 @@ const Dashboard = () => {
                   ))}
                 </tbody>
               </table>
-              {click && (
+              <div>{loadingMessage}</div>
+              {clickStatus && (
                 <div>
-                  <ProgressBar />
+                  <ProgressBar duration={loadingDuration} />
                 </div>
               )}
             </div>
