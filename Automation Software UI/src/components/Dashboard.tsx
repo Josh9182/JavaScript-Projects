@@ -35,11 +35,11 @@ const Dashboard = () => {
             setError('Data amount invalid, unable to parse. Please resubmit.');
             setTableData([]);
           } else {
-            const cols = Object.keys(jsonData[0]);
-            const rows = jsonData.map((value) =>
-              cols.map((col) => value[col])
+            const headers = Object.keys(jsonData[0]);
+            const row_data = jsonData.map((value) =>
+              headers.map((header) => value[header])
             );
-            const newJSONdata = [cols, ...rows];
+            const newJSONdata = [headers, ...row_data];
             setTableData(newJSONdata);
             setError('');
           }
@@ -86,13 +86,13 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {tableData.slice(1).map((row, rowIndex) => (
-                <tr key={rowIndex}>
-                  {row.map((cell, cellIndex) => (
-                    <td key={cellIndex}>{cell}</td>
-                  ))}
-                </tr>
-              ))}
+            {tableData.slice(1).map((row, index) => (
+              <tr key={index}>
+                {row.map((cell, index) => (
+                  <td key={index}>{cell}</td>
+                ))}
+              </tr>
+            ))}
             </tbody>
           </table>
         )}
