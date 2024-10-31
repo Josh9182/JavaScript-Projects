@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Login from './Login.tsx';
+import ProgressBar from './ProgressBar.tsx';
 
 const Dashboard = () => {
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState<string>('');
+  const [progressbar, setProgressBar] = useState<boolean>(false);
+  const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
+  const [click, setClick] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const FileUpload = (e) => {
@@ -24,6 +28,7 @@ const Dashboard = () => {
           } else {
             setTableData(cols);
             setError('');
+            setButtonVisibility(true);
           }
         } catch (err) {
           setError('CSV file is invalid. Please resubmit.');
@@ -40,6 +45,7 @@ const Dashboard = () => {
             const newJSONdata = [cols, ...rows];
             setTableData(newJSONdata);
             setError('');
+            setButtonVisibility(true);
           }
         } catch (err) {
           setError('JSON file is invalid. Please resubmit.');
@@ -52,6 +58,10 @@ const Dashboard = () => {
     freader.readAsText(file);
   };
 
+  const buttonClicked = () => {
+    setClick(true);
+  };
+
   const NavigatePage = (e) => {
     e.preventDefault();
     navigate('./Login');
@@ -61,39 +71,54 @@ const Dashboard = () => {
     <div id="dashboard-container">
       <div id="dashboard-banner">
         <h1 id="dashboard-logo">AST</h1>
+        <div id="sign-out-container">
+          <button id="sign-out-button" onClick={NavigatePage}>
+            Sign Out
+          </button>
+        </div>
       </div>
+
       <div id="error-container">
         <h1 id="error-element">{error}</h1>
       </div>
       <div id="input-container">
         <input type="file" accept=".csv, .json" onChange={FileUpload} />
-      </div>
-      <div id="sign-out-container">
-        <button id="sign-out-button" onClick={NavigatePage}>
-          Sign Out
-        </button>
-      </div>
-      <div id="table-container">
-        {tableData.length > 0 && (
-          <table>
-            <thead>
-              <tr>
-                {tableData[0].map((value, index) => (
-                  <th key={index}>{value}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.slice(1).map((row, index) => (
-                <tr key={index}>
-                  {row.map((cell, index) => (
-                    <td key={index}>{cell}</td>
+        {tableData.length > 0 && buttonVisibility ? (
+          <div>
+            <div id="button-container">
+              <button onClick={buttonClicked}>Process Data</button>
+            </div>
+            <div id="table-container">
+              <table id="data-table">
+                <thead id="dt-header">
+                  <tr id="header-row">
+                    {tableData[0].map((value, index) => (
+                      <th key={index} id="header-cell">
+                        {value}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                  {tableData.slice(1).map((row, rowIndex) => (
+                    <tr key={rowIndex} id="body-row">
+                      {row.map((cell, cellIndex) => (
+                        <td key={cellIndex} id="body-cell">
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+                </tbody>
+              </table>
+              {click && (
+                <div>
+                  <ProgressBar />
+                </div>
+              )}
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );
