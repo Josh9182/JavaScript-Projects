@@ -1,1 +1,73 @@
+$background-color: rgb(32 35 36);
 
+#dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: $background-color;
+  overflow: hidden;
+}
+
+#banner-container {
+  display: flex;
+  height: 10vh;
+  width: auto;
+  border: 1px solid rgb(78, 78, 78);
+}
+
+#dashboard-banner {
+  display: flex;
+  align-items: center;
+  background-color: $background-color;
+  height: 10vh;
+  width: 100vw;
+}
+
+#dashboard-logo {
+  color: aliceblue;
+  font-size: 75px;
+  margin-left: 10px;
+  position: absolute;
+}
+
+#sign-out-container {
+  border: 1px solid white;
+  border-radius: 10px;
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+#sign-out-button {
+  color: white;
+  border: 2px solid $background-color;
+  background-color: $background-color;
+  font-size: 25px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#sign-out-button:hover {
+  padding: 9px;
+  border: 2px solid rgb(78, 78, 78);
+  background-color: rgb(78, 78, 78);
+  cursor: pointer;
+}
+
+#error-container {
+  display: flex;
+  border: 1px solid white;
+  height: auto;
+  width: auto;
+}
+
+#input-container {
+  display: flex;
+  border: 1px solid white;
+  height: ;
+
+}
