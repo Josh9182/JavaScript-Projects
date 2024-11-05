@@ -1,4 +1,5 @@
 $background-color: rgb(32 35 36);
+$outline-color: rgb(78, 78, 78);
 
 #dashboard-container {
   display: flex;
@@ -13,7 +14,7 @@ $background-color: rgb(32 35 36);
   display: flex;
   height: 10vh;
   width: auto;
-  border: 1px solid rgb(78, 78, 78);
+  border: 1px solid $outline-color;
 }
 
 #dashboard-banner {
@@ -53,8 +54,8 @@ $background-color: rgb(32 35 36);
 
 #sign-out-button:hover {
   padding: 9px;
-  border: 2px solid rgb(78, 78, 78);
-  background-color: rgb(78, 78, 78);
+  border: 2px solid $outline-color;
+  background-color: $outline-color;
   cursor: pointer;
 }
 
@@ -68,6 +69,4 @@ $background-color: rgb(32 35 36);
 #input-container {
   display: flex;
   border: 1px solid white;
-  height: ;
-
 }
