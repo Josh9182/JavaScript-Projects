@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Login from './Login.tsx';
 import ProgressBar from './ProgressBar.tsx';
+import './Dashboard.scss';
+import automationImage from './Users/joshlewis/Downloads/ShinyApp/automationImage.png';
 
 const Dashboard = () => {
   const [tableData, setTableData] = useState([]);
   const [errorStatus, setError] = useState<string>('');
   const [buttonVisibility, setButtonVisibility] = useState<boolean>(false);
+  const [menuSlide, setMenuSlide] = useState<boolean>(false);
   const [clickStatus, setClick] = useState<boolean>(false);
   const [loadingDuration, setLoadingDuration] = useState<number>(0);
   const navigate = useNavigate();
 
-  const FileUpload = (e) => {  {/* Ensuring all useState variables are transparent in order to remove possible visual errors */}
+  const FileUpload = (e) => { {/* Ensuring all useState variables are transparent in order to remove possible visual errors */}
     setTableData([]);
     setError('');
+    setMenuSlide(false);
     setButtonVisibility(false);
     setClick(false);
     setLoadingDuration(0);
@@ -31,11 +34,11 @@ const Dashboard = () => {
 
           if (rows.length <= 1 || cols.length <= 1) {
             setError('Data amount invalid, unable to parse. Please resubmit.');
-            setTableData([]);
           } else {
-            setTableData(cols); {/* Error checking to see if data exists, if so then a table can be created based off columns, errors dissapear, and button options become visible. */}
+            setTableData(cols);
             setError('');
-            setButtonVisibility(true);
+            setButtonVisibility(true); {/* Error checking to see if data exists, if so then a table can be created based off columns, errors dissapear, and button options become visible. */}
+            setMenuSlide(true);
           }
         } catch (err) {
           setError('CSV file is invalid. Please resubmit.');
@@ -53,6 +56,7 @@ const Dashboard = () => {
             setTableData(newJSONdata);
             setError('');
             setButtonVisibility(true);
+            setMenuSlide(true);
           }
         } catch (err) {
           setError('JSON file is invalid. Please resubmit.');
@@ -82,58 +86,72 @@ const Dashboard = () => {
     setLoadingDuration(duration);
   }, [clickStatus]);
 
+  useEffect(() => {
+    if (!clickStatus) {
+      return;
+    }
+  });
+
   return (
     <div id="dashboard-container">
-      <div id="dashboard-banner">
-        <h1 id="dashboard-logo">AST</h1>
-        <div id="sign-out-container">
-          <button id="sign-out-button" onClick={NavigatePage}>
-            Sign Out
-          </button>
+      <div id="banner-container">
+        <div id="dashboard-banner">
+          <h1 id="dashboard-logo">AST</h1>
+          <div id="sign-out-container">
+            <button id="sign-out-button" onClick={NavigatePage}>
+              Sign Out
+            </button>
+          </div>
         </div>
       </div>
 
       <div id="error-container">
         <h1 id="error-element">{errorStatus}</h1>
       </div>
-      <div id="input-container">
-        <input type="file" accept=".csv, .json" onChange={FileUpload} />
-        {tableData.length > 0 && buttonVisibility ? (
-          <div>
+      <div id="bottom-container">
+        <div className={`input-container ${menuSlide ? 'slide-left' : ''}`}>
+          <input type="file" accept=".csv, .json" onChange={FileUpload} />
+          {buttonVisibility ? (
             <div id="button-container">
               <button onClick={buttonClicked}>Process Data</button>
             </div>
-            <div id="table-container">
-              <table id="data-table">
-                <thead id="dt-header">
-                  <tr id="header-row">
-                    {tableData[0].map((value, index) => (
-                      <th key={index} id="header-cell">
-                        {value}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody id="table-body">
-                  {tableData.slice(1).map((row, rowIndex) => (
-                    <tr key={rowIndex} id="body-row">
-                      {row.map((cell, cellIndex) => (
-                        <td key={cellIndex} id="body-cell">
-                          {cell}
-                        </td>
+          ) : null}
+        </div>
+        <div id="table-container">
+          {tableData.length > 0 ? (
+            <div>
+              <div id="table-container">
+                <table id="data-table">
+                  <thead id="dt-header">
+                    <tr id="header-row">
+                      {tableData[0].map((value, index) => (
+                        <th key={index} id="header-cell">
+                          {value}
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              {clickStatus && (
-                <div>
-                  <ProgressBar duration={loadingDuration} />
-                </div>
-              )}
+                  </thead>
+                  <tbody id="table-body">
+                    {tableData.slice(1).map((row, rowIndex) => (
+                      <tr key={rowIndex} id="body-row">
+                        {row.map((cell, cellIndex) => (
+                          <td key={cellIndex} id="body-cell">
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {clickStatus && (
+                  <div id="pbar-container">
+                    <ProgressBar duration={loadingDuration} />
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
       </div>
     </div>
   );
