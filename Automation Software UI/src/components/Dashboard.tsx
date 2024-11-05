@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [loadingDuration, setLoadingDuration] = useState<number>(0);
   const navigate = useNavigate();
 
-  const FileUpload = (e) => {
+  const FileUpload = (e) => {  {/* Ensuring all useState variables are transparent in order to remove possible visual errors */}
     setTableData([]);
     setError('');
     setButtonVisibility(false);
@@ -21,18 +21,19 @@ const Dashboard = () => {
     const file = e.target.files[0];
     const freader = new FileReader();
 
-    freader.onload = (e) => {
+    freader.onload = (e) => { {/* Onload event handler used to create a processing agent for the data, this will run after the file reading is complete. */}
       const data = e.target.result;
 
       if (file.name.endsWith('.csv')) {
         try {
           const rows = data.split('\n');
-          const cols = rows.map((row) => row.split(','));
+          const cols = rows.map((row) => row.split(',')); {/* Since CSV files can't be nested they can be easily parsed via splitting based off a "," */}
 
           if (rows.length <= 1 || cols.length <= 1) {
             setError('Data amount invalid, unable to parse. Please resubmit.');
+            setTableData([]);
           } else {
-            setTableData(cols);
+            setTableData(cols); {/* Error checking to see if data exists, if so then a table can be created based off columns, errors dissapear, and button options become visible. */}
             setError('');
             setButtonVisibility(true);
           }
@@ -46,9 +47,9 @@ const Dashboard = () => {
             setError('Data amount invalid, unable to parse. Please resubmit.');
             setTableData([]);
           } else {
-            const cols = Object.keys(jsonData[0]);
+            const cols = Object.keys(jsonData[0]); {/* Accessing first row of JSON data, gathering all keys to transform into column headers. */}
             const rows = jsonData.map((value) => cols.map((col) => value[col]));
-            const newJSONdata = [cols, ...rows];
+            const newJSONdata = [cols, ...rows]; {/* 2D Array creation, organizing rows by their original columns so it can be turned into a table. */}
             setTableData(newJSONdata);
             setError('');
             setButtonVisibility(true);
@@ -61,7 +62,7 @@ const Dashboard = () => {
         setTableData([]);
       }
     };
-    freader.readAsText(file);
+    freader.readAsText(file); {/* Read the imported file as text, allowing for the processing agent to manipulate and structure the table. */}
   };
 
   const buttonClicked = () => {
