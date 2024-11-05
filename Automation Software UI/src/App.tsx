@@ -3,6 +3,13 @@ import Loading from './Loading';
 import Login from './Login';
 import Dashboard from './Dashboard';
 
+{/*
+App component returning a layered routing structure
+BrowserRouter manages component history
+Routes containerizes route definitions
+Route defines URL -> component pathways & redirects
+*/}
+
 const App = () => {
   return (
     <BrowserRouter>
