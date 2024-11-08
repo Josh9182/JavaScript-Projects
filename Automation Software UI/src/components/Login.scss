@@ -3,7 +3,9 @@ $dsi_blue: rgb(38, 140, 180);
 $gr_blue: rgb(27, 32, 86);
 $dgr_blue: rgb(13, 9, 35);
 
-* {
+html,
+body {
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -37,7 +39,7 @@ $dgr_blue: rgb(13, 9, 35);
 }
 
 #error-element {
-  font-size: 15px;
+  font-size: 1vw;
   color: red;
 }
 
@@ -87,25 +89,19 @@ $dgr_blue: rgb(13, 9, 35);
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: auto;
-  max-width: 400px;
-  width: auto;
+  height: 6vh;
+  max-width: 60vw;
   transform: translateY(10%);
   z-index: 2;
 }
 
 #h1-sign-in {
   display: flex;
+  font-size: 3vw;
   flex-direction: row;
-  height: auto;
-  width: 100px;
   color: white;
-  margin-right: 295px;
-}
-
-#h1-ast {
-  color: white;
-  padding-bottom: 10px;
+  margin-bottom: 7vw;
+  margin-left: 2vw;
 }
 
 #username-container {
