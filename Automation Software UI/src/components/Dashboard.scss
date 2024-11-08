@@ -1,6 +1,13 @@
 $background-color: rgb(32 35 36);
 $outline-color: rgb(78, 78, 78);
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #dashboard-container {
   display: flex;
   flex-direction: column;
@@ -12,7 +19,7 @@ $outline-color: rgb(78, 78, 78);
 
 #banner-container {
   display: flex;
-  height: 10vh;
+  height: 10%;
   width: auto;
   border: 1px solid $outline-color;
 }
@@ -22,38 +29,38 @@ $outline-color: rgb(78, 78, 78);
   align-items: center;
   background-color: $background-color;
   height: 10vh;
-  width: 100vw;
+  width: 100%;
 }
 
 #dashboard-logo {
   color: aliceblue;
-  font-size: 75px;
-  margin-left: 10px;
+  font-size: 5vw;
+  margin-left: 1vw;
   position: absolute;
 }
 
 #sign-out-container {
   border: 1px solid white;
-  border-radius: 10px;
+  border-radius: 1vw;
   height: auto;
   width: auto;
   display: flex;
   flex-direction: column;
   margin-left: auto;
-  margin-right: 20px;
+  margin-right: 2vw;
 }
 
 #sign-out-button {
   color: white;
-  border: 2px solid $background-color;
+  border: 3px solid $background-color;
   background-color: $background-color;
-  font-size: 25px;
-  border-radius: 10px;
-  padding: 10px;
+  font-size: 2vw;
+  border-radius: 1vw;
+  padding: 0.5vw;
 }
 
 #sign-out-button:hover {
-  padding: 9px;
+  padding: 0.5vw;
   border: 2px solid $outline-color;
   background-color: $outline-color;
   cursor: pointer;
@@ -61,18 +68,26 @@ $outline-color: rgb(78, 78, 78);
 
 #error-container {
   display: flex;
-  border: 1px solid white;
-  height: auto;
-  width: auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 5vw;
+  width: 30vw;
+  transform: translateX(120%) translateY(100%);
+  border-radius: 8px;
+}
+
+#error-element {
+  font-size: 2vw;
 }
 
 #bottom-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: center;
-  height: 100vh;
-  width: 100vw;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .input-container {
@@ -81,8 +96,8 @@ $outline-color: rgb(78, 78, 78);
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 200px;
-  width: 600px;
+  height: 30vh;
+  width: 40vw;
   border: 1px solid white;
   border-radius: 40px;
   box-shadow: 0 0 5px white;
@@ -94,11 +109,53 @@ $outline-color: rgb(78, 78, 78);
   }
 }
 
+#file-input {
+  position: absolute;
+  color: black;
+  font-size: 1.5vw;
+  border: 2px solid gray;
+  border-radius: 20px;
+  background-color: lightgray;
+  transform: translateY(-120%);
+  animation: gradient2 5s infinite;
+}
+
+#button-container {
+  position: absolute;
+  height: auto;
+  width: auto;
+  transform: translateY(50%);
+  animation: show 2s ease-in;
+}
+
+#process-button {
+  background-color: black;
+  color: white;
+  width: 15vw;
+  font-size: 1.5vw;
+  padding: 5px;
+  box-shadow: 0 0 5px white;
+  border-radius: 20px;
+  transform: translateY(-20%);
+  animation: gradient1 2s infinite;
+  font-weight: bold;
+}
+
+#progress-bar {
+  display: flex;
+  transform: translateY(200%);
+}
+
+#process-button:hover {
+  background-color: darkgray;
+  cursor: pointer;
+}
+
 .table-container {
   position: relative;
-  transform: translateY(8%) translateX(60%);
-  max-height: 80vh;
-  max-width: 100%;
+  transform: translateX(60%);
+  max-height: 60vh;
+  max-width: 100vw;
   overflow-x: auto;
   overflow-y: auto;
   box-shadow: 0 0 5px white;
@@ -115,20 +172,23 @@ $outline-color: rgb(78, 78, 78);
   table-layout: auto;
 }
 
-#dt-header {
+#dt-header,
+#header-row {
+  position: sticky;
   top: 0;
   color: white;
-  z-index: 1;
+  z-index: 2;
   overflow-x: auto;
   max-width: 50px;
 }
 
 #header-cell,
 #body-cell {
-  padding: 8px;
-  border: 1px solid #ccc;
+  padding: 1vh 0.5vw;
+  border: 0.1vw solid #ccc;
   color: white;
-  width: 150px;
+  width: 15vw;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -147,5 +207,29 @@ $outline-color: rgb(78, 78, 78);
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes gradient1 {
+  0% {
+    border: 5px solid rgb(207, 37, 207);
+  }
+  50% {
+    border: 5px solid rgb(73, 20, 73);
+  }
+  100% {
+    border: 5px solid rgb(207, 37, 207);
+  }
+}
+
+@keyframes gradient2 {
+  0% {
+    border: 4px solid gray;
+  }
+  50% {
+    border: 4px solid rgb(62, 194, 62);
+  }
+  100% {
+    border: 4px solid gray;
   }
 }
