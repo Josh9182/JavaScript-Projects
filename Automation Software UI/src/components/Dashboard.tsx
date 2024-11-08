@@ -48,7 +48,9 @@ const Dashboard = () => {
             }, 1700);
 
             setError('');
-            setButtonVisibility(true);
+            setTimeout(() => {
+              setButtonVisibility(true);
+            }, 2000);
             {
               /* Error checking to see if data exists, if so then a table can be created based off columns, errors dissapear, and button options become visible. */
             }
@@ -78,7 +80,9 @@ const Dashboard = () => {
             }, 1700);
 
             setError('');
-            setButtonVisibility(true);
+            setTimeout(() => {
+              setButtonVisibility(true);
+            }, 2000);
             setMenuSlide(true);
           }
         } catch (err) {
@@ -136,18 +140,22 @@ const Dashboard = () => {
       </div>
       <div id="bottom-container">
         <div className={`input-container ${menuSlide ? 'slide-left' : ''}`}>
-          <input type="file" accept=".csv, .json" onChange={FileUpload} />
+          <input
+            id="file-input"
+            type="file"
+            accept=".csv, .json"
+            onChange={FileUpload}
+          />
           {buttonVisibility ? (
             <div id="button-container">
-              <button onClick={buttonClicked}>Process Data</button>
+              <button id="process-button" onClick={buttonClicked}>
+                Process Data
+              </button>
             </div>
           ) : null}
-          {clickStatus && (
-            <ProgressBar
-              className={`ProgressBar ${clickStatus} ? grow: ""`}
-              duration={loadingDuration}
-            />
-          )}
+          <div id="progress-bar">
+            {clickStatus && <ProgressBar duration={loadingDuration} />}
+          </div>
         </div>
         <div className={`table-container`}>
           {tableData.length > 0 ? (
