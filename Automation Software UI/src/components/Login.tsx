@@ -6,8 +6,7 @@ import './Login.scss';
 const App = () => {
   const [username, setUser] = useState<string>('');
   const [password, setPass] = useState<string>('');
-  const [heading1, setHead1] = useState<string>('Sign In');
-  const [heading2, setHead2] = useState<string>('Automation Software Template');
+  const [heading1, setHead1] = useState<string>('Automation Template - Sign In');
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -17,7 +16,6 @@ const App = () => {
     if (username === 'admin' && password === 'password') {
       setLoading(true);
       setHead1('');
-      setHead2('');
       setError('');
       setTimeout(() => { {/* Timeout for dashboard navigation, waits 2 seconds and shows loading element, then runs code to navigate. */}
         setLoading(false);
@@ -35,7 +33,6 @@ const App = () => {
       <div id="top-half">
         <div id="heading-container">
           <h1 id="h1-sign-in">{heading1}</h1>
-          <h1 id="h1-ast">{heading2}</h1>
         </div>
       </div>
       <div id="error-container" className={error ? 'error' : ''}>
