@@ -129,8 +129,8 @@ body {
 }
 
 #process-button {
-  background-color: black;
-  color: white;
+  background-color: rgb(197, 197, 197);
+  color: rgb(0, 0, 0);
   width: 15vw;
   font-size: 1.5vw;
   padding: 5px;
@@ -215,7 +215,7 @@ body {
     border: 5px solid rgb(207, 37, 207);
   }
   50% {
-    border: 5px solid rgb(73, 20, 73);
+    border: 5px solid rgb(119, 0, 119);
   }
   100% {
     border: 5px solid rgb(207, 37, 207);
