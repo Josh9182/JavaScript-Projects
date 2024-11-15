@@ -23,14 +23,15 @@ body {
 #error-container {
   display: flex;
   flex-direction: column;
-  height: 5vh;
 
   &.error {
     border: 1px solid red;
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 20px;
-    transform: translateY(-500%);
+    transform: translateY(-130%) translateX(2%);
+    height: 10vh;
+    width: 50vw;
   }
 
   &.error:hover {
