@@ -1,6 +1,6 @@
 export const fetchData = async (array_data) => {
   const URL = 'https://localhost:5001';
-  const endpoint = `${URL}/api/data`;
+  const endpoint = `${URL}/api/fi-data`;
 
   const AC = new AbortController(); /* AbortController instance */
   const timeout = setTimeout(() => { /* Initiate 7 second fail safe timer */
